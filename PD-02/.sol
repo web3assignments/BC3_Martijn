@@ -12,7 +12,6 @@ contract myContract {
     }
  
     struct Person {
-      uint _id;
       string _firstName;
       string _lastName;
       
@@ -23,12 +22,9 @@ contract myContract {
     }
     
     function addPerson(string memory _firstName, string memory _lastName) public onlyOwner {
-        incrementCount();
-        peopleCount += 1;
-        people[peopleCount] = Person(peopleCount, _firstName, _lastName);
-    }
-    function incrementCount() internal {
-    peopleCount += 1;
+      unit [id] = people.push(Person(_firstName, _lastName)) + 1;
+       onlyToOwner [id] = msg.sender;
+      
     }
     
 }
