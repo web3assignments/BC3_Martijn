@@ -1,8 +1,8 @@
 pragma solidity 0.5.1;
 
 contract myContract {
-    uint public peopleCount = 0;
-    mapping(uint => Person) public people;
+    Person[]public people;
+    return people.length;
     
     address owner;
     
@@ -22,9 +22,14 @@ contract myContract {
     }
     
     function addPerson(string memory _firstName, string memory _lastName) public onlyOwner {
-      unit [id] = people.push(Person(_firstName, _lastName)) + 1;
-       onlyToOwner [id] = msg.sender;
       
     }
     
+    
+   unit [id] = people.push(Person(_firstName, _lastName)) + 1; {
+    unit id = people.length - 1; 
+    
+    onlyToOwner [id] = msg.sender;
+      
+    }
 }
