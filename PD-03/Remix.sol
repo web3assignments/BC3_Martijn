@@ -5,6 +5,13 @@ contract MyContract {
 
  address owner;
  
+ uint startTime;
+
+    modifier onlyWhileOpen() {
+        require(block.timestamp >= startTime);
+        _;
+    }
+ 
  modifier onlyOwner() {
         require(msg.sender == owner);
         _;
@@ -12,7 +19,7 @@ contract MyContract {
     
     constructor() public{
     owner = msg.sender;
-    
+    startTime = 1606128173;
     }
     
     event Purchase(
