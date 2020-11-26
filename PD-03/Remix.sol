@@ -12,11 +12,6 @@ contract MyContract {
         _;
     }
  
- modifier onlyOwner() {
-        require(msg.sender == owner);
-        _;
-    }
-    
     constructor() public{
     owner = msg.sender;
     startTime = 1606128173;
@@ -34,6 +29,14 @@ contract MyContract {
     function() external payable {
         buyToken();
     }
+
+    function buyToken() public payable {
+        balances[msg.sender] += 1;
+        wallet.transfer(msg.value);
+        emit Purchase(msg.sender, 1);
+        require(wallet.transfer >= 1);
+    }
+}
 
     function buyToken() public payable {
         balances[msg.sender] += 1;
