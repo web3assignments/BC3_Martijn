@@ -1,19 +1,19 @@
-pragma solidity 0.5.1;
+pragma solidity >=0.7.0;
+pragma experimental ABIEncoderV2;
 
 contract myContract {
    
     address owner;
     
-    
-    modifier onlyOwner() {
+   modifier onlyOwner() {
     require(msg.sender == owner);
     _;
     }
- 
+   
     struct Person {
       string _firstName;
       string _lastName;
-      uint _age;
+      uint _personAge;
       
     }
     
@@ -32,7 +32,7 @@ contract myContract {
     
     function adultTest(Person memory _people) public returns (string memory){
     string memory adult;
-   if (_people.personAge >=18 == true)
+   if (_people.personAge >=18)
      adult = "You are a adult";
     else
   adult = "U are not a adult";
