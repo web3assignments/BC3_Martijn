@@ -35,7 +35,7 @@ abstract contract myContract {
     
    function adultTest(Person memory _people) public returns (string memory){
     string memory adult;
-   if (_people.personAge >=18)
+   if (_people._personAge >=18)
      adult = "You are a adult";
     else
   adult = "U are not a adult";
