@@ -32,8 +32,6 @@ contract MyContract {
         balances[msg.sender] += 1;
         wallet.transfer(msg.value);
         emit Purchase(msg.sender, 1);
-        require(wallet.transfer >= 1);
+        
     }
 }
-
-   
