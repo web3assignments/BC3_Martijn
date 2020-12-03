@@ -25,7 +25,7 @@ abstract contract myContract {
     Person[] public people;
     
     function addPerson(string memory _firstName, string memory _lastName, uint _personAge) public onlyOwner returns (uint) {
-        people.push(Person(_firstName, _lastName, _age));
+        people.push(Person(_firstName, _lastName, _personAge));
         return  people.length - 1;
         
     
