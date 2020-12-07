@@ -1,28 +1,37 @@
-pragma solidity >=0.4.0 <0.7.0;
+pragma solidity 0.5.1;
 
-contract Coin {
-    address public user;
-    mapping (address => uint) public balances;
+contract MyContract {
+    mapping(address => uint) public balances;
 
-    
+ address owner;
+ address payable wallet;
+ 
+ uint startTime;
 
-    constructor() public {
-        user = msg.sender;
-    }
-    
-    event Sent(address from, address to, uint amount);
-    event Received(address from, uint amount);
-    
-
-    function send(address receiver, uint amount) public {
-        require(amount <= balances[msg.sender], "Insufficient balance.");
-        balances[msg.sender] -= amount;
-        balances[receiver] += amount;
-        emit Sent(msg.sender, receiver, amount);
-    }
-    
-    function Receive() external payable {
-        emit Received(msg.sender, msg.value);
+    modifier onlyWhileOpen() {
+        require(block.timestamp >= startTime);
+        _;
     }
 
+    event Purchase(
+        address indexed _buyer,
+        uint _amount
+    );
+
+    constructor(address payable _wallet) public {
+        wallet = _wallet;
+         owner = msg.sender;
+    startTime = 1606128173;
+    }
+
+    function() external payable {
+        buyToken();
+    }
+
+    function buyToken() public payable {
+        balances[msg.sender] += 1;
+        wallet.transfer(msg.value);
+        emit Purchase(msg.sender, 1);
+        
+    }
 }
