@@ -14,8 +14,8 @@
 
     Smartcontract
     <br >
-    <button onclick="printSend();">BuyToken</button>
-    <button onclick="printBalance();">Balance</button>
+    <button onclick="buyToken();">BuyToken</button>
+    
     <br /><br />
     Status: <span id="status">Loading...</span>
 
@@ -29,7 +29,7 @@
 
         async function loadContract() {
             return await new window.web3.eth.Contract([
-                
+                [
 	{
 		"constant": true,
 		"inputs": [
@@ -92,11 +92,11 @@
 		"type": "event"
 	}
 
-], '0x8C75e734EcbF3e690e122D1f43D468f9D4e8C52A');
-}
+], '0x8415D3Cf40d637c7D660dD53C757e8479eDB8F77'
 
 
-        async function printBuyToken() {
+
+        async function buyToken() {
             updateStatus('fetching buyToken...');
             const buyToken = await window.contract.methods.buyToken().call();
             updateStatus(`buyToken: ${buyToken}`);
@@ -107,12 +107,6 @@
             return accounts[0];r
         }
 
-        async function balances() {
-           
-            const account = await getCurrentAccount();
-            const buyToken = await window.contract.methods.setSend(value).buyToken({ from: account });
-            updateStatus('Updated.');
-        }
 
         async function load() {
             await loadWeb3();
