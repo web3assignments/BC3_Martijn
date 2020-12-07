@@ -7,7 +7,7 @@
     <title>Smartcontract</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-    <script src='node_modules/web3/dist/web3.min.js'></script>
+   <script src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
 </head>
 
 <body>
@@ -29,7 +29,7 @@
 
         async function loadContract() {
             return await new window.web3.eth.Contract([
-                [
+                
 	{
 		"constant": true,
 		"inputs": [
@@ -92,8 +92,8 @@
 		"type": "event"
 	}
 
-], '0x8415D3Cf40d637c7D660dD53C757e8479eDB8F77'
-
+], '0x8415D3Cf40d637c7D660dD53C757e8479eDB8F77');
+}
 
 
         async function buyToken() {
