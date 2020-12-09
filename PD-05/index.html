@@ -11,7 +11,7 @@
 </head>
 
 <body>
-
+    
     Smartcontract
     <body class="container">
 
@@ -19,15 +19,14 @@
 
     <div class="fnContainer_2LE5C3"><div class="view_2LE5C3 function_2LE5C3"><div class="title_2LE5C3"><a title="This function is a VIEW FUNCTION (a call), which returns information from the Ethereum network and costs no gas (it's free)." class="fnName_2LE5C3"><div class="name_2LE5C3">balances</div></a></div><ul class="visible_2LE5C3">
             <div class="inputContainer_2LE5C3"><div title="data type: address" class="inputParam_2LE5C3">key</div><div class="inputFields_2LE5C3"><div class="addressField_2LE5C3"><input data-type="address" placeholder="0x633..." class="inputField_2LE5C3"></div></div><div class="output_2LE5C3"></div></div><div class="send_2LE5C3"><i class="icon_2LE5C3 fa fa-arrow-circle-right"></i></div></ul></div></div><div class="fnContainer_2LE5C3"><div class="payable_2LE5C3 function_2LE5C3"><div class="title_2LE5C3"><a title="This function is a PAYABLE FUNCTION, which enables to send ETH while being called. This type of function will cost you gas (execution fee)." class="fnName_2LE5C3"><div class="name_2LE5C3">buyToken</div></a></div><ul class="visible_2LE5C3"><div class="inputContainer_1qdaxD"><div title="data type: payable" class="title_1qdaxD">value</div><div class="inputArea_1qdaxD"><input placeholder="999" class="input_1qdaxD"><select class="currency_1qdaxD"><option value="wei">wei</option><option value="k-wei">k-wei</option><option value="m-wei">m-wei</option><option value="g-wei">g-wei</option><option value="micro">micro</option><option value="milli">milli</option><option value="ether">ether</option><option value="k-ether">k-ether</option><option value="m-ether">m-ether</option><option value="g-ether">g-ether</option><option value="t-ether">t-ether</option></select></div><div title="Select amount you want to send with this function!" class="ethIcon_1qdaxD"><i class="fab fa-ethereum"></i></div></div><div class="send_2LE5C3"><i class="icon_2LE5C3 fa fa-arrow-circle-right"></i></div></ul></div></div>
-
+  <button value="buyToken" type="button" onClick='buyToken()'>Koop nu</button> 
+              </div>
 
      <script type="text/javascript">
-        async function f() {
-            web3 = new Web3(Web3.givenProvider); // provider from metamask
-            var acts = await web3.eth.requestAccounts();
-            const contractSimple = "0x8415D3Cf40d637c7D660dD53C757e8479eDB8F77"
-            const SimpleContractABI = 
-                
+       
+            const contract_address = "0x8415D3Cf40d637c7D660dD53C757e8479eDB8F77"
+            const abi = 
+           [     
 	{
 		"constant": true,
 		"inputs": [
@@ -90,35 +89,28 @@
 		"type": "event"
 	}
 
-], '0x8415D3Cf40d637c7D660dD53C757e8479eDB8F77');
+]
 }
 
+async function asyncloaded() {
+    web3 = new Web3(Web3.givenProvider); // provider from metamask      
+    var result = await web3.eth.requestAccounts().catch(x => console.log(x.message));
+    console.log(`web3 is present: ${web3.version}`); // note: use ` (back quote)
+    const network = await web3.eth.net.getId().catch((reason) => console.log(`Cannnot find network ${reason}`));
+    if (typeof network === 'undefined' || network != 4) { console.log("Please select Rinkeby test network"); return; }
+    console.log("Ethereum network: Rinkeby")
+    accounts = await web3.eth.getAccounts();
+    console.log(accounts[0]); // show current user.
+    contract = new web3.eth.Contract(abi, contract_address);
+}
+window.addEventListener(asyncloaded);       
 
-        async function buyToken() {
-            updateStatus('fetching buyToken...');
-            const buyToken = await window.contract.methods.buyToken().call();
-            updateStatus(`buyToken: ${buyToken}`);
-        }
-
-        async function getCurrentAccount() {
-            const accounts = await window.web3.eth.getAccounts();
-            return accounts[0];r
-        }
-
-
-        async function load() {
-            await loadWeb3();
-            window.contract = await loadContract();
-            updateStatus('Ready!');
-        }
-
-        function updateStatus(status) {
-            const statusEl = document.getElementById('status');
-            statusEl.innerHTML = status;
-            console.log(status);
-        }
-
-        load();
+function buyToken() {
+    
+    contract.methods.buyToken().send({from: accounts[0]}).then(x => console.log(x));
+}
+        
+       
     </script>
 </body>
 
