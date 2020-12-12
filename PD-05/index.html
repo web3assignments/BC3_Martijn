@@ -90,7 +90,7 @@
 	}
 
 ]
-}
+
 
 async function asyncloaded() {
     web3 = new Web3(Web3.givenProvider); // provider from metamask      
@@ -103,7 +103,7 @@ async function asyncloaded() {
     console.log(accounts[0]); // show current user.
     contract = new web3.eth.Contract(abi, contract_address);
 }
-window.addEventListener(asyncloaded);       
+window.addEventListener("load", asyncloaded);       
 
 function buyToken() {
     
