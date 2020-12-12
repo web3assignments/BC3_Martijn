@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Smartcontract</title>
+   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
   <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
    <script src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
@@ -24,9 +24,13 @@
 
      <script type="text/javascript">
        
-            const contract_address = "0x8415D3Cf40d637c7D660dD53C757e8479eDB8F77"
-            const abi = 
-           [     
+	   async function f() {
+            web3 = new Web3(Web3.givenProvider); // provider from metamask
+            var acts = await web3.eth.requestAccounts();
+            const contractSimple = "0x8415D3Cf40d637c7D660dD53C757e8479eDB8F77"
+            const SimpleContractABI = [
+	   
+           
 	{
 		"constant": true,
 		"inputs": [
@@ -109,7 +113,12 @@ function buyToken() {
     
     contract.methods.buyToken().send({from: accounts[0]}).then(x => console.log(x));
 }
-        
+     
+function balances() {
+
+contract.methods.balances().send({from: accounts[0]}).then(x => console.log(x));
+
+}	 
        
     </script>
 </body>
