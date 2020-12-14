@@ -94,7 +94,7 @@
 	}
 
 ]
-
+}
 
 async function asyncloaded() {
     web3 = new Web3(Web3.givenProvider); // provider from metamask      
@@ -114,12 +114,7 @@ function buyToken() {
     contract.methods.buyToken().send({from: accounts[0]}).then(x => console.log(x));
 }
      
-function balances() {
 
-contract.methods.balances().send({from: accounts[0]}).then(x => console.log(x));
-
-}	 
-return emit Purchase;
        
     </script>
 </body>
