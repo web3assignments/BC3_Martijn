@@ -27,6 +27,7 @@
 	   async function f() {
             web3 = new Web3(Web3.givenProvider); // provider from metamask
             var acts = await web3.eth.requestAccounts();
+			var contract = smartcontract.sol;
             const contractSimple = "0x8415D3Cf40d637c7D660dD53C757e8479eDB8F77"
             const SimpleContractABI = [
 	   
