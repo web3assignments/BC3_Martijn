@@ -26,7 +26,7 @@
        
 	   async function f() {
             
-			var contract = smartcontract.sol;
+			var contract 
             const contractSimple = "0x8415D3Cf40d637c7D660dD53C757e8479eDB8F77"
             const SimpleContractABI = [
 	   
@@ -96,6 +96,9 @@
 ]
 }
 
+
+
+
 async function asyncloaded() {
     web3 = new Web3(Web3.givenProvider); // provider from metamask      
     var result = await web3.eth.requestAccounts().catch(x => console.log(x.message));
@@ -105,7 +108,7 @@ async function asyncloaded() {
     console.log("Ethereum network: Rinkeby")
     accounts = await web3.eth.getAccounts();
     console.log(accounts[0]); // show current user.
-    contract = new web3.eth.Contract(abi, contract_address);
+   contract = new web3.eth.Contract(SimpleContractABI, contractSimple);
 }
 window.addEventListener("load", asyncloaded);       
 
