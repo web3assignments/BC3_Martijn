@@ -8,10 +8,4 @@ module.exports = async function(deployer) {
     console.log(`Address of  MyContractContract: ${ MyContractContract.address}`)
     console.log(`Address of MyContract2Contract: ${MyContract2Contract.address}`)
     console.log("Doing some tests with the just upgraded contract");
-    await MyContract2Contract.set(5)
-    var bnx=await MyContract2Contract.result() // note result is Big Number
-    console.log(`Called function set(5), X is now ${bnx.toString()}`)
-    await MyContract2Contract.set2(5)
-    var bnx=await MyContract2Contract.result() // note result is Big Number
-    console.log(`Called function set2(5), X is now ${bnx.toString()}`)
 }
