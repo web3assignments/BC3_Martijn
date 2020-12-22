@@ -1,4 +1,3 @@
-
 <html>
   <head>
     <title>Create website to store & retrieve images on IPFS</title>
@@ -12,7 +11,7 @@
     function upload() {
       const reader = new FileReader();
       reader.onloadend = function() {
-        const ipfs = window.IpfsApi('localhost', 5001) // Connect to IPFS
+        const ipfs = window.IpfsApi('localhost', 1337) // Connect to IPFS
         const buf = buffer.Buffer(reader.result) // Convert data into buffer
         ipfs.files.add(buf, (err, result) => { // Upload buffer to IPFS
           if(err) {
