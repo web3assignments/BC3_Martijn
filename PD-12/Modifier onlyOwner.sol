@@ -5,21 +5,18 @@ pragma solidity ^0.6.1;
 contract Mycontract {
     mapping(address => uint) public balances;
     
-     modifier onlyOwner() {
-    require(msg.sender == owner);
-    _;
-    }
+    address public owner = msg.sender;
+    
 
- address owner;
+  modifier restricted() {
+    require(
+      msg.sender == owner
+    );
+    _;
+  }
  address payable wallet;
  
- uint startTime;
-
-    modifier onlyWhileOpen() {
-        require(block.timestamp >= startTime);
-        _;
-    }
-
+ 
     event Purchase(
         address indexed _buyer,
         uint _amount
@@ -27,8 +24,7 @@ contract Mycontract {
 
     constructor(address payable _wallet) public  {
         wallet = _wallet;
-         owner = msg.sender;
-    startTime = 1606128173;
+        
     }
 
     function _fallback() external payable {
