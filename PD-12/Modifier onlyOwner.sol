@@ -31,7 +31,7 @@ contract Mycontract {
         buyToken();
     }
 
-    function buyToken() public payable {
+    function buyToken() public payable restricted {
         balances[msg.sender] += 1;
         wallet.transfer(msg.value);
         emit Purchase(msg.sender, 1);
