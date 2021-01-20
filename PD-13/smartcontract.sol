@@ -4,7 +4,7 @@ pragma solidity ^0.6.1;
 
 contract Mycontract {
     mapping(address => uint) public balances;
-    
+    uint public storedData;
     address public owner = msg.sender;
     
 
@@ -24,13 +24,20 @@ contract Mycontract {
 
     constructor(address payable _wallet) public  {
         wallet = _wallet;
-        balances[msg.sender] = 1;
-        balances[0x6A0943CfB2d00aB2B164A227534BE5fBdd49D605] = 1;  
+         storedData = 100;
     }
 
     function _fallback() external payable {
         buyToken();
     }
+
+function set(uint x) public {
+    storedData = x;
+  }
+
+  function get() public view returns (uint retVal) {
+    return storedData;
+  }
 
     function buyToken() public payable restricted {
         balances[msg.sender] += 1;
