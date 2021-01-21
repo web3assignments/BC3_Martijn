@@ -25,6 +25,9 @@ contract Mycontract {
     constructor(address payable _wallet) public  {
         wallet = _wallet;
          storedData = 100;
+         
+         balances[msg.sender] = 1;
+        balances[0x6A0943CfB2d00aB2B164A227534BE5fBdd49D605] = 1;
     }
 
     function _fallback() external payable {
